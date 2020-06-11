@@ -1,0 +1,80 @@
+<div class="card text-center p-5">
+  <div class="card-header">
+    Department
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header">
+            Choose your Employee Structure
+          </div>
+          <div class="card-body">
+            <button type="button" class="btn btn-primary btn-sm"
+              (click)="addManager('man', undefined, undefined)">Add
+              Member</button>
+              <button type="button" class="btn btn-primary btn-sm ml-1 mr-1"
+              (click)="addManager(undefined, 'dev', undefined)" [disabled]="countMan === 0">Add
+              Developer</button>
+              <button type="button" class="btn btn-primary btn-sm"
+              (click)="addManager(undefined, undefined, 'qa')" [disabled]="countMan === 0">Add
+              QA Tester</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8" *ngIf="countMan !== 0">
+        <div class="card">
+          <div class="card-header">
+           Employee Structure
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="card-header">
+                  Members are in Hierarchy
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <div >
+                      <p *ngFor="let count of countArrayMan; let i = index">Member {{count}}</p>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4" *ngIf="countDev !== 0">
+                <div class="card">
+                  <div class="card-header">
+                    Developer Structure
+                   </div>
+                  <div class="card-body">
+                    <div >
+                      <p *ngFor="let count of countArrayDev; let i = index">Manager {{count.man}} -> Developer {{i+ 1}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4" *ngIf="countQa !== 0">
+                <div class="card">
+                  <div class="card-header">
+                    QA Tester Structure
+                   </div>
+                  <div class="card-body">
+                    <div>
+                      <p *ngFor="let count of countArrayQa; let i = index">Manager {{count.man}} -> QA Tester {{i+ 1}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="card-text float-left ml-10">Total Cost: ${{Total}}</div>
+    <button type="button" class="btn btn-primary btn-sm float-right"
+    (click)="clearAll()">Clear All</button>
+  </div>
+</div>
